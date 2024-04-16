@@ -83,27 +83,26 @@ class ProductController extends Controller
 }
 
    //Delete /products/{id}
-    function destroy($id)
-    {
-    try {
-        // Buscar el producto por su ID
-        $product = Product::find($id);
+    function destroy($id){
+        try {
+            // Buscar el producto por su ID
+            $product = Product::find($id);
 
-        // Verificar si el producto existe
-        if (!$product) {
+             // Verificar si el producto existe
+            if (!$product) {
             return response()->json(['message' => 'El producto no existe.'], 404);
-        }
+            }
 
-        // Eliminar el producto
-        $product->delete();
+            // Eliminar el producto
+             $product->delete();
 
-        // Devolver una respuesta adecuada
-        return response()->json(['message' => 'El producto ha sido eliminado correctamente.'], 200);
-    } catch (\Exception $e) {
+            // Devolver una respuesta adecuada
+            return response()->json(['message' => 'El producto ha sido eliminado correctamente.'], 200);
+        } catch (\Exception $e) {
         // Manejar errores de la base de datos
         Log::error('Error al eliminar el producto:', ['exception' => $e->getMessage()]);
         return response()->json(['message' => 'Error al eliminar el producto: ' . $e->getMessage()], 500);
-    }
+        }
     }
 
 }
