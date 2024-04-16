@@ -61,23 +61,26 @@ class ProductController extends Controller
     }
 }
     //put /id
-    function update(Request $request, Product $product)
-    {
-        // Obtener los datos del producto de la solicitud
-        $requestData = $request->json()->all();
+    function update(Request $request, $id)
+{
+    // Obtener los datos del producto de la solicitud
+    $requestData = $request->json()->all();
 
-        try {
-            // Actualizar los datos del producto
-            $product->update($requestData);
+    try {
+        // Buscar el producto por su ID
+        $product = Product::findOrFail($id);
 
-            // Devolver una respuesta adecuada
-            return response()->json("El producto ha sido actualizado correctamente.", 200);
-        } catch (\Exception $e) {
-            // Manejar errores de la base de datos
-            Log::error('Error al actualizar el producto:', ['exception' => $e->getMessage()]);
-            return response()->json(['message' => 'Error al actualizar el producto: ' . $e->getMessage()], 500);
-        }
+        // Actualizar los datos del producto
+        $product->update($requestData);
+
+        // Devolver una respuesta adecuada
+        return response()->json("El producto ha sido actualizado correctamente.", 200);
+    } catch (\Exception $e) {
+        // Manejar errores de la base de datos
+        Log::error('Error al actualizar el producto:', ['exception' => $e->getMessage()]);
+        return response()->json(['message' => 'Error al actualizar el producto: ' . $e->getMessage()], 500);
     }
+}
 
    //Delete /products/{id}
     function destroy($id)
