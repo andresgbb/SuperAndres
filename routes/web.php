@@ -1,15 +1,16 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthController; // Importa el controlador de autenticación
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and will be assigned to
-| the "web" middleware group, which is defined in your kernel. Enjoy building your API!
+| Aquí es donde puedes registrar las rutas web para tu aplicación. Estas
+| rutas son cargadas por RouteServiceProvider y serán asignadas al grupo de middleware "web",
+| que está definido en tu kernel. ¡Disfruta construyendo tu API!
 |
 */
 
@@ -17,10 +18,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/csrf-token', function() {
-    return response()->json(['csrf_token' => csrf_token()], 200);
-});
+// Ruta para el login
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+    // Ruta para almacenar un nuevo producto
+    Route::post('/products', [ProductController::class, 'store']);
 
 
+ // Ruta para mostrar todos los productos
+ Route::get('/products', [ProductController::class, 'index']);
 
-
+ // Ruta para mostrar un producto específico por su ID
+ Route::get('/products/{id}', [ProductController::class, 'show']);
