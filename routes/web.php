@@ -23,10 +23,10 @@ Route::get('/', function () {
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 //PRODUCT WEB
     // Ruta para almacenar un nuevo producto
-Route::post('/products', [ProductController::class, 'store']);
+// Route::post('/products', [ProductController::class, 'store']);
  // Ruta para mostrar todos los productos
- Route::get('/products', [ProductController::class, 'index']);
+//  Route::get('/products', [ProductController::class, 'index']);
  // Ruta para mostrar un producto específico por su ID
- Route::get('/products/{id}', [ProductController::class, 'show']);
+//  Route::get('/products/{id}', [ProductController::class, 'show']);
 
  //PROVIDER WEB
