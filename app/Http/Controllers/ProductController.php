@@ -28,8 +28,7 @@ class ProductController extends Controller
         return response()->json($product);
     }
     //post
-    public function store(Request $request)
-{
+    public function store(Request $request){
     // Obtener el contenido JSON del cuerpo de la solicitud
     $requestData = $request->json()->all();
 
@@ -61,8 +60,7 @@ class ProductController extends Controller
     }
 }
     //put /id
-    function update(Request $request, $id)
-{
+    function update(Request $request, $id){
     // Obtener los datos del producto de la solicitud
     $requestData = $request->json()->all();
 
