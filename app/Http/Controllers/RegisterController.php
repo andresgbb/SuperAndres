@@ -16,7 +16,7 @@ class RegisterController extends Controller{
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string',
         ]);
 
         // Crear un nuevo usuario con los datos proporcionados
@@ -25,9 +25,6 @@ class RegisterController extends Controller{
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
-        // Redireccionar al usuario a la página de inicio de sesión
-        return redirect('/login');
     }
 }
 
