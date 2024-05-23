@@ -19,13 +19,13 @@ class LoginTest extends TestCase{
     {
         // Creamos un usuario de prueba
         $user = User::factory()->create([
-            'email' => 'angabe@gmail.com',
+            'email' => 'prueba6@gmail.com',
             'password' => bcrypt('1234'),
         ]);
 
         // Hacemos una solicitud de login con las credenciales válidas
         $response = $this->postJson('/api/login', [
-            'email' => 'angabe@gmail.com',
+            'email' => 'prueba6@gmail.com',
             'password' => '1234',
         ]);
 
@@ -46,13 +46,13 @@ class LoginTest extends TestCase{
     {
         // Creamos un usuario de prueba
         $user = User::factory()->create([
-            'email' => 'angabe@gmail.com',
+            'email' => 'prueba7@gmail.com',
             'password' => bcrypt('1234'),
         ]);
 
         // Hacemos una solicitud de login con credenciales inválidas
         $response = $this->postJson('/api/login', [
-            'email' => 'angabe@gmail.com',
+            'email' => 'prueba7@gmail.com',
             'password' => 'invalid-password',
         ]);
 
